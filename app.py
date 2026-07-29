@@ -1,14 +1,8 @@
-def main():
-    print("=" * 50)
-    print("Radiotherapy Research Assistant (RRA)")
-    print("=" * 50)
+from agents.research_agent import research
 
-    topic = input("What would you like to research today?\n> ")
+print("Welcome!")
+print()
 
-    print()
-    print(f"Searching for: {topic}")
-    print("This feature will be implemented in the next sprint.")
+query = input("Enter your research topic: ")
 
-
-if __name__ == "__main__":
-    main()
+research(query)
