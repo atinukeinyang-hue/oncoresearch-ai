@@ -23,7 +23,7 @@ def search_pubmed(query):
 
     print(pmids)
 
-    # Step 3: Fetch paper details
+    # Step 3: Fetch article details
     ids = ",".join(pmids)
 
     fetch_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
@@ -41,7 +41,6 @@ def search_pubmed(query):
 
     print(root.tag)
 
-    # Step 5: Build a list of papers
     papers = []
 
     for article in root.findall(".//PubmedArticle"):
@@ -51,11 +50,33 @@ def search_pubmed(query):
         if title is None:
             title = "No title available"
 
+        author_list = article.findall(".//Author")
+
+        authors = []
+
+        for author in author_list:
+
+            lastname = author.findtext("LastName")
+            initials = author.findtext("Initials")
+
+            if lastname and initials:
+                authors.append(f"{lastname} {initials}")
+
+        if authors:
+            authors = ", ".join(authors)
+        else:
+            authors = "Unknown"
+
+        year = article.findtext(".//PubDate/Year")
+
+        if year is None:
+            year = "Unknown"
+
         papers.append(
             {
                 "title": title,
-                "authors": "Unknown",
-                "year": "Unknown"
+                "authors": authors,
+                "year": year
             }
         )
 
@@ -63,10 +84,6 @@ def search_pubmed(query):
 
 
 def search_pubmed_dummy(query):
-    """
-    Backup copy of the simulated PubMed search.
-    """
-
     print(f"\nSearching PubMed for: {query}\n")
 
     papers = [
