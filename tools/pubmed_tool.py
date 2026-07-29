@@ -3,29 +3,19 @@ def search_pubmed(query):
     Simulates searching PubMed.
     """
 
+    print(f"\nSearching PubMed for: {query}\n")
+
     papers = [
         {
-            "title": "AI Contouring for Prostate Radiotherapy",
-            "authors": "Smith et al.",
-            "year": 2024,
-        },
-        {
-            "title": "Deep Learning in Cervical Brachytherapy",
+            "title": f"Recent Advances in {query}",
             "authors": "Johnson et al.",
-            "year": 2023,
+            "year": 2024
         },
         {
-            "title": "MRI-guided Adaptive Radiotherapy",
+            "title": f"Artificial Intelligence for {query}",
             "authors": "Williams et al.",
-            "year": 2022,
-        },
+            "year": 2023
+        }
     ]
 
-    print("\nPubMed Results")
-    print("=" * 50)
-
-    for paper in papers:
-        print(f"Title: {paper['title']}")
-        print(f"Authors: {paper['authors']}")
-        print(f"Year: {paper['year']}")
-        print("-" * 50)
+    return papers
