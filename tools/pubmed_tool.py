@@ -1,11 +1,12 @@
 import requests
 import xml.etree.ElementTree as ET
 
+from tools.summarizer import summarize_paper
+
 
 def search_pubmed(query):
     print(f"\nSearching PubMed for: {query}\n")
 
-    # Step 1: Search PubMed
     search_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 
     search_params = {
@@ -18,12 +19,10 @@ def search_pubmed(query):
     response = requests.get(search_url, params=search_params)
     data = response.json()
 
-    # Step 2: Extract PMIDs
     pmids = data["esearchresult"]["idlist"]
 
     print(pmids)
 
-    # Step 3: Fetch article details
     ids = ",".join(pmids)
 
     fetch_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
@@ -36,7 +35,6 @@ def search_pubmed(query):
 
     fetch_response = requests.get(fetch_url, params=fetch_params)
 
-    # Step 4: Parse XML
     root = ET.fromstring(fetch_response.text)
 
     print(root.tag)
@@ -67,16 +65,40 @@ def search_pubmed(query):
         else:
             authors = "Unknown"
 
+        journal = article.findtext(".//Journal/Title")
+
+        if journal is None:
+            journal = "Unknown"
+
         year = article.findtext(".//PubDate/Year")
 
         if year is None:
             year = "Unknown"
 
+        abstract_parts = article.findall(".//Abstract/AbstractText")
+
+        if abstract_parts:
+            abstract = " ".join(
+                part.text for part in abstract_parts if part.text
+            )
+        else:
+            abstract = "No abstract available."
+
+        summary = summarize_paper(
+            title,
+            abstract,
+            journal,
+            year
+        )
+
         papers.append(
             {
                 "title": title,
                 "authors": authors,
-                "year": year
+                "journal": journal,
+                "year": year,
+                "abstract": abstract,
+                "summary": summary
             }
         )
 
@@ -90,12 +112,28 @@ def search_pubmed_dummy(query):
         {
             "title": f"Recent Advances in {query}",
             "authors": "Johnson et al.",
-            "year": 2024
+            "journal": "Journal of Radiotherapy",
+            "year": "2024",
+            "abstract": "This is a simulated abstract.",
+            "summary": summarize_paper(
+                f"Recent Advances in {query}",
+                "This is a simulated abstract.",
+                "Journal of Radiotherapy",
+                "2024"
+            )
         },
         {
             "title": f"Artificial Intelligence for {query}",
             "authors": "Williams et al.",
-            "year": 2023
+            "journal": "Medical Physics",
+            "year": "2023",
+            "abstract": "This is another simulated abstract.",
+            "summary": summarize_paper(
+                f"Artificial Intelligence for {query}",
+                "This is another simulated abstract.",
+                "Medical Physics",
+                "2023"
+            )
         }
     ]
 
