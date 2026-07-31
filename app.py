@@ -1,7 +1,11 @@
-from agents.research_agent import research
+from agents.comparison_agent import compare_papers
 
-print("Welcome!")
+print("===================================")
+print("Radiotherapy Research Assistant")
+print("AI Paper Comparison")
+print("===================================\n")
 
-query = input("Enter your research topic: ")
+query1 = input("Enter first research topic: ")
+query2 = input("Enter second research topic: ")
 
-research(query)
+compare_papers(query1, query2)

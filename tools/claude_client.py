@@ -1,13 +1,15 @@
-import os
 import json
 
 import anthropic
-from dotenv import load_dotenv
 
-load_dotenv()
+# --------------------------------------------------
+# TEMPORARY TEST
+# Paste your NEW Anthropic API key below
+
+# --------------------------------------------------
 
 client = anthropic.Anthropic(
-    api_key=os.getenv("ANTHROPIC_API_KEY")
+    api_key="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"
 )
 
 
@@ -67,19 +69,15 @@ Use exactly this format:
         if getattr(block, "type", "") == "text":
             result += block.text
 
-    # Print exactly what Claude returned
     print("\n========== RAW CLAUDE RESPONSE ==========\n")
     print(result)
     print("\n=========================================\n")
 
     result = result.strip()
-
-    # Remove markdown fences if Claude added them
     result = result.replace("```json", "")
     result = result.replace("```", "")
     result = result.strip()
 
-    # Find JSON
     start = result.find("{")
     end = result.rfind("}")
 
@@ -93,4 +91,4 @@ Use exactly this format:
     print(json_text)
     print("\n====================================\n")
 
-    return result
+    return json.loads(json_text)
