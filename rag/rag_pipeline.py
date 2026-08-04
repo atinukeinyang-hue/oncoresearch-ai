@@ -13,6 +13,10 @@ print("\nSearching knowledge base...\n")
 
 papers = retrieve_papers(question)
 
+if not papers:
+    print("No relevant papers were found.")
+    raise SystemExit
+
 print(f"Retrieved {len(papers)} relevant papers.\n")
 
 print("Generating evidence-based answer...\n")
@@ -26,5 +30,16 @@ print("========================================\n")
 print(answer)
 
 print("\n========================================")
+print(" REFERENCES")
+print("========================================\n")
+
+for i, paper in enumerate(papers, start=1):
+    print(f"[{i}]")
+    print(paper["title"])
+    print(paper["authors"])
+    print(f"{paper['journal']} ({paper['year']})")
+    print()
+
+print("========================================")
 print(" End of Report")
 print("========================================")
