@@ -26,3 +26,18 @@ The comparison includes:
 ✅ Completed
 
 *Screenshot coming in the next update.*
+
+
+## Sprint 6 – Retrieval-Augmented Generation (RAG)
+
+### ✅ Local Vector Database
+
+- Integrated ChromaDB as the local vector database.
+- Built a persistent knowledge base from PubMed research papers.
+- Stored paper abstracts together with metadata including title, authors, journal, and publication year.
+
+### ✅ Semantic Retrieval
+
+- Implemented semantic similarity search using ChromaDB.
+- Users can ask research questions in natural language.
+- The system retrieves the most relevant papers from the local knowledge base instead of querying PubMed every time.
