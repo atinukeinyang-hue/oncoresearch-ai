@@ -55,3 +55,15 @@ The comparison includes:
 - Displays the retrieved research papers used to generate each AI answer.
 - Lists supporting references including title, authors, journal, and publication year.
 - Improves transparency and trustworthiness of generated research summaries.
+
+## Sprint 7 – Professional Report Export
+
+### ✅ Microsoft Word Report Generation
+
+- Automatically exports every AI-generated research answer to a professionally formatted Microsoft Word document.
+- Reports include:
+  - Research Question
+  - AI Research Summary
+  - References
+  - Generation Date
+- Saves reports into an `outputs/` folder with unique timestamps.
