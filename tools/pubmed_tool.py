@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 from tools.summarizer import summarize_paper
 
 
-def search_pubmed(query):
+def search_pubmed(query, use_claude=True):
     print(f"\nSearching PubMed for: {query}\n")
 
     search_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
@@ -88,7 +88,8 @@ def search_pubmed(query):
             title,
             abstract,
             journal,
-            year
+            year,
+            use_claude=use_claude
         )
 
         papers.append(
