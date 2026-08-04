@@ -10,34 +10,58 @@ collection = client.get_collection(
     name="pubmed_papers"
 )
 
-print("\n===================================")
-print("Semantic Paper Search")
-print("===================================\n")
 
-question = input("Ask a research question: ")
+def retrieve_papers(question, n_results=3):
 
-results = collection.query(
-    query_texts=[question],
-    n_results=3
-)
+    results = collection.query(
+        query_texts=[question],
+        n_results=n_results
+    )
 
-print("\n===================================")
-print("Top Matching Papers")
-print("===================================\n")
+    documents = results["documents"][0]
+    metadata = results["metadatas"][0]
 
-documents = results["documents"][0]
-metadata = results["metadatas"][0]
+    papers = []
 
-for i in range(len(documents)):
+    for i in range(len(documents)):
 
-    print(f"Paper {i+1}")
+        papers.append(
+            {
+                "title": metadata[i]["title"],
+                "authors": metadata[i]["authors"],
+                "journal": metadata[i]["journal"],
+                "year": metadata[i]["year"],
+                "abstract": documents[i]
+            }
+        )
 
-    print(f"Title   : {metadata[i]['title']}")
-    print(f"Authors : {metadata[i]['authors']}")
-    print(f"Journal : {metadata[i]['journal']}")
-    print(f"Year    : {metadata[i]['year']}")
+    return papers
 
-    print("\nAbstract\n")
-    print(documents[i])
 
-    print("\n-----------------------------------------\n")
+if __name__ == "__main__":
+
+    print("\n===================================")
+    print("Semantic Paper Search")
+    print("===================================\n")
+
+    question = input("Ask a research question: ")
+
+    papers = retrieve_papers(question)
+
+    print("\n===================================")
+    print("Top Matching Papers")
+    print("===================================\n")
+
+    for i, paper in enumerate(papers, start=1):
+
+        print(f"Paper {i}\n")
+
+        print(f"Title   : {paper['title']}")
+        print(f"Authors : {paper['authors']}")
+        print(f"Journal : {paper['journal']}")
+        print(f"Year    : {paper['year']}")
+
+        print("\nAbstract\n")
+        print(paper["abstract"])
+
+        print("\n-----------------------------------------\n")
