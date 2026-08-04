@@ -41,3 +41,11 @@ The comparison includes:
 - Implemented semantic similarity search using ChromaDB.
 - Users can ask research questions in natural language.
 - The system retrieves the most relevant papers from the local knowledge base instead of querying PubMed every time.
+
+### ✅ Retrieval-Augmented Generation (RAG)
+
+- Built a complete Retrieval-Augmented Generation pipeline.
+- Integrated ChromaDB for local semantic search.
+- Retrieves the most relevant PubMed papers.
+- Uses Claude Sonnet to generate evidence-based research summaries from retrieved literature.
+- Produces structured clinical insights instead of returning raw abstracts.
