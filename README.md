@@ -1,6 +1,6 @@
 # 🩺 OncoResearch AI
 
-![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python) ![Claude](https://img.shields.io/badge/Claude-Sonnet-orange) ![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20Database-green) ![RAG](https://img.shields.io/badge/RAG-Retrieval--Augmented--Generation-red) ![PubMed](https://img.shields.io/badge/PubMed-NCBI-blue) ![License](https://img.shields.io/badge/License-MIT-success) ![Version](https://img.shields.io/badge/Version-1.0-purple)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Claude](https://img.shields.io/badge/Claude-Sonnet-D97706?style=for-the-badge) ![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20DB-16A34A?style=for-the-badge) ![RAG](https://img.shields.io/badge/RAG-Evidence%20Grounded-DC2626?style=for-the-badge) ![PubMed](https://img.shields.io/badge/PubMed-NCBI-2563EB?style=for-the-badge) ![License](https://img.shields.io/badge/License-MIT-059669?style=for-the-badge) ![Version](https://img.shields.io/badge/Version-v1.0-7C3AED?style=for-the-badge)
 
 ### *An Evidence-Based AI Research Assistant for Radiotherapy and Medical Physics*
 
