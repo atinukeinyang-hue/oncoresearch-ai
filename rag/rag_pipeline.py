@@ -1,5 +1,6 @@
 from rag.retrieve import retrieve_papers
 from rag.rag_client import generate_rag_answer
+from rag.report_exporter import export_rag_report
 
 
 print("\n========================================")
@@ -40,6 +41,16 @@ for i, paper in enumerate(papers, start=1):
     print(f"{paper['journal']} ({paper['year']})")
     print()
 
-print("========================================")
+print("Generating Word report...\n")
+
+report_path = export_rag_report(
+    question=question,
+    answer=answer,
+    papers=papers
+)
+
+print(f"Word report saved as: {report_path}")
+
+print("\n========================================")
 print(" End of Report")
 print("========================================")
