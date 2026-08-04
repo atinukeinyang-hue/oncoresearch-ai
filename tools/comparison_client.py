@@ -1,12 +1,14 @@
+import os
+
 import anthropic
+from dotenv import load_dotenv
 
-# --------------------------------------------------
-# TEMPORARY TEST
-# Paste your NEW Anthropic API key below
-# --------------------------------------------------
+# Load environment variables from .env
+load_dotenv()
 
+# Create Anthropic client
 client = anthropic.Anthropic(
-    api_key="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"
+    api_key=os.getenv("ANTHROPIC_API_KEY")
 )
 
 
