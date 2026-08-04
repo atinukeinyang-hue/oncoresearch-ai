@@ -67,3 +67,11 @@ The comparison includes:
   - References
   - Generation Date
 - Saves reports into an `outputs/` folder with unique timestamps.
+
+### ✅ Professional Word Report Formatting
+
+- Added a dedicated cover page.
+- Improved heading hierarchy and paragraph spacing.
+- Added formatted supporting-reference tables.
+- Added report generation date and application version.
+- Added a footer to generated reports.
