@@ -49,3 +49,9 @@ The comparison includes:
 - Retrieves the most relevant PubMed papers.
 - Uses Claude Sonnet to generate evidence-based research summaries from retrieved literature.
 - Produces structured clinical insights instead of returning raw abstracts.
+
+### ✅ Evidence Grounding
+
+- Displays the retrieved research papers used to generate each AI answer.
+- Lists supporting references including title, authors, journal, and publication year.
+- Improves transparency and trustworthiness of generated research summaries.
