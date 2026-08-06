@@ -9,6 +9,13 @@ OncoResearch AI is an AI-powered **Retrieval-Augmented Generation (RAG)** resear
 The application searches **PubMed**, builds a local semantic knowledge base using **ChromaDB**, retrieves the most relevant research papers, generates evidence-based answers using **Claude Sonnet**, compares scientific publications, and exports professionally formatted research reports.
 
 ---
+## Why OncoResearch AI?
+
+Medical literature is expanding rapidly, making it increasingly difficult for clinicians, medical physicists, researchers, and students to stay current with the latest evidence.
+
+OncoResearch AI was developed to streamline evidence-based literature exploration by combining live PubMed retrieval, AI-powered analysis, Retrieval-Augmented Generation (RAG), semantic search using ChromaDB, and automated report generation into a single research workflow.
+
+The project demonstrates how modern AI engineering techniques can support scientific research while reducing the time required to identify, analyze, compare, and summarize relevant biomedical publications.
 
 ## 🚀 Project Highlights
 
@@ -58,6 +65,31 @@ The diagram below illustrates the high-level architecture of **OncoResearch AI**
 </p>
 
 ---
+## Architecture Workflow
+
+```text
+                   User
+                     │
+                     ▼
+             Interactive Menu
+                     │
+        ┌────────────┴────────────┐
+        ▼                         ▼
+ PubMed Search               RAG Assistant
+        │                         │
+        ▼                         ▼
+   PubMed API               ChromaDB Search
+        │                         │
+        ▼                         ▼
+ Claude Sonnet            Relevant Papers
+        │                         │
+        ▼                         ▼
+ Structured Analysis     Evidence-Based Answer
+        │
+        ├───────────────┐
+        ▼               ▼
+ Excel Export      Word Report
+```
 
 # ⚙️ Installation
 
@@ -148,6 +180,27 @@ Generate professionally formatted Microsoft Word research reports and Excel expo
 
 ---
 
+## Example Output
+
+```text
+============================================================
+Research Topic:
+Cervical Cancer Brachytherapy
+
+Searching PubMed...
+
+Retrieved 5 papers
+
+Generating Claude analysis...
+
+✓ Excel report generated
+
+✓ Word report generated
+
+Completed successfully.
+============================================================
+```
+
 # 📁 Project Structure
 
 ```text
@@ -185,6 +238,30 @@ oncoresearch-ai/
 | Git & GitHub | Version control and collaboration |
 
 ---
+## Key Skills Demonstrated
+
+- Python application development
+- REST API integration
+- Prompt engineering
+- Large Language Model (LLM) integration
+- Retrieval-Augmented Generation (RAG)
+- ChromaDB vector databases
+- Semantic search
+- JSON processing
+- Microsoft Word automation
+- Microsoft Excel automation
+- Git and GitHub
+- Modular software architecture
+
+## Potential Clinical Applications
+
+- Evidence-based literature review
+- Radiotherapy research
+- Medical physics education
+- Clinical guideline exploration
+- Research paper comparison
+- AI-assisted report generation
+- Scientific knowledge retrieval
 
 # 🗺️ Roadmap
 
@@ -215,6 +292,28 @@ oncoresearch-ai/
 - Cloud deployment
 
 ---
+
+## Acknowledgements
+
+This project makes use of the following open-source tools and services:
+
+- PubMed (NCBI)
+- Anthropic Claude API
+- ChromaDB
+- OpenPyXL
+- python-docx
+- Python Requests
+
+## About the Author
+
+Developed by **Atinuke Inyang**.
+
+Medical Physicist and AI Engineer with a focus on applying artificial intelligence to radiotherapy, medical physics, and evidence-based clinical research.
+
+This project forms part of a broader portfolio exploring AI-assisted healthcare applications, Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), and intelligent clinical decision-support systems.
+
+- GitHub: https://github.com/atinukeinyang-hue
+- LinkedIn: *(linkedin.com/in/atinukeinyang)*
 
 # 📄 License
 
