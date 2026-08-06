@@ -9,6 +9,27 @@ OncoResearch AI is an AI-powered **Retrieval-Augmented Generation (RAG)** resear
 The application searches **PubMed**, builds a local semantic knowledge base using **ChromaDB**, retrieves the most relevant research papers, generates evidence-based answers using **Claude Sonnet**, compares scientific publications, and exports professionally formatted research reports.
 
 ---
+## ⚡ Quick Start
+
+```bash
+git clone https://github.com/atinukeinyang-hue/oncoresearch-ai.git
+cd oncoresearch-ai
+
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# macOS/Linux
+source .venv/bin/activate
+
+pip install -r requirements.txt
+
+python rag/build_vector_db.py
+
+python app.py
+```
+
 ## Why OncoResearch AI?
 
 Medical literature is expanding rapidly, making it increasingly difficult for clinicians, medical physicists, researchers, and students to stay current with the latest evidence.
