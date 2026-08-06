@@ -1,14 +1,18 @@
-# 🩺 OncoResearch AI
+## 🩺 OncoResearch AI
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Claude](https://img.shields.io/badge/Claude-Sonnet-D97706?style=for-the-badge) ![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20DB-16A34A?style=for-the-badge) ![RAG](https://img.shields.io/badge/RAG-Evidence%20Grounded-DC2626?style=for-the-badge) ![PubMed](https://img.shields.io/badge/PubMed-NCBI-2563EB?style=for-the-badge) ![License](https://img.shields.io/badge/License-MIT-059669?style=for-the-badge) ![Version](https://img.shields.io/badge/Version-v1.0-7C3AED?style=for-the-badge)
 
-### *An Evidence-Based AI Research Assistant for Radiotherapy and Medical Physics*
+> 🚧 **Project Status:** Active Development (Version 1.0)
+>
+> This project is actively maintained, with additional AI capabilities planned for future releases.
+
+## *An Evidence-Based AI Research Assistant for Radiotherapy and Medical Physics*
 
 OncoResearch AI is an AI-powered **Retrieval-Augmented Generation (RAG)** research assistant designed to help clinicians, medical physicists, researchers, and students rapidly explore the scientific literature.
 
 The application searches **PubMed**, builds a local semantic knowledge base using **ChromaDB**, retrieves the most relevant research papers, generates evidence-based answers using **Claude Sonnet**, compares scientific publications, and exports professionally formatted research reports.
 
----
+
 ## ⚡ Quick Start
 
 ```bash
@@ -29,6 +33,22 @@ python rag/build_vector_db.py
 
 python app.py
 ```
+## 📚 Table of Contents
+
+- [Why OncoResearch AI?](#why-oncoresearch-ai)
+- [Project Highlights](#project-highlights)
+- [Application Preview](#application-preview)
+- [System Architecture](#system-architecture)
+- [Installation](#installation)
+- [Usage Guide](#usage-guide)
+- [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+- [Key Skills Demonstrated](#key-skills-demonstrated)
+- [Potential Clinical Applications](#potential-clinical-applications)
+- [Roadmap](#roadmap)
+- [Acknowledgements](#acknowledgements)
+- [About the Author](#about-the-author)
+- [License](#license)
 
 ## Why OncoResearch AI?
 
@@ -51,7 +71,7 @@ The project demonstrates how modern AI engineering techniques can support scient
 - 🖥️ Interactive menu-driven application
 ---
 
-# 📸 Application Preview
+## 📸 Application Preview
 
 ## Main Menu
 
@@ -77,7 +97,7 @@ The project demonstrates how modern AI engineering techniques can support scient
 
 ---
 
-# 🏗️ System Architecture
+## 🏗️ System Architecture
 
 The diagram below illustrates the high-level architecture of **OncoResearch AI** and how the different components work together to generate evidence-based research answers.
 
@@ -88,7 +108,7 @@ The diagram below illustrates the high-level architecture of **OncoResearch AI**
 
 
 
-# ⚙️ Installation
+## ⚙️ Installation
 
 Clone the repository:
 
@@ -142,7 +162,7 @@ python rag/build_vector_db.py
 
 ---
 
-# ▶️ Usage Guide
+## ▶️ Usage Guide
 
 After installation, launch the application:
 
@@ -159,19 +179,19 @@ You will be presented with an interactive menu:
 4. Exit
 ```
 
-### Search and Analyse PubMed Papers
+## Search and Analyse PubMed Papers
 
 Search the latest scientific literature directly from PubMed and generate AI-assisted summaries.
 
-### Compare Research Topics
+## Compare Research Topics
 
 Compare two research topics or publications and identify key similarities and differences.
 
-### Ask the RAG Research Assistant
+## Ask the RAG Research Assistant
 
 Ask evidence-based research questions against your local ChromaDB knowledge base.
 
-### Export Professional Reports
+## Export Professional Reports
 
 Generate professionally formatted Microsoft Word research reports and Excel exports for documentation and further analysis.
 
@@ -198,7 +218,7 @@ Completed successfully.
 ============================================================
 ```
 
-# 📁 Project Structure
+## 📁 Project Structure
 
 ```text
 oncoresearch-ai/
@@ -220,7 +240,7 @@ oncoresearch-ai/
 
 ---
 
-# 🛠️ Technologies Used
+## 🛠️ Technologies Used
 
 | Technology | Purpose |
 |------------|---------|
@@ -260,7 +280,7 @@ oncoresearch-ai/
 - AI-assisted report generation
 - Scientific knowledge retrieval
 
-# 🗺️ Roadmap
+## 🗺️ Roadmap
 
 ## ✅ Version 1.0
 
@@ -310,11 +330,11 @@ Medical Physicist and AI Engineer with a focus on applying artificial intelligen
 This project forms part of a broader portfolio exploring AI-assisted healthcare applications, Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), and intelligent clinical decision-support systems.
 
 - GitHub: GitHub: [atinukeinyang-hue](https://github.com/atinukeinyang-hue)
-- LinkedIn: *(LinkedIn: https://www.linkedin.com/in/atinukeinyang/)*
+- LinkedIn: - LinkedIn: https://www.linkedin.com/in/atinukeinyang/
 
 
 
-# 📄 License
+## 📄 License
 
 This project is licensed under the MIT License.
 
