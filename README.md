@@ -167,3 +167,19 @@ oncoresearch-ai/
 ├── README.md            # Project documentation
 └── .env                 # Environment variables (not committed)
 ```
+
+---
+
+# 🛠️ Technologies Used
+
+| Technology | Purpose |
+|------------|---------|
+| Python 3.11 | Core programming language |
+| Claude Sonnet | AI reasoning and scientific analysis |
+| PubMed API | Retrieval of biomedical research papers |
+| ChromaDB | Local vector database for semantic search |
+| Retrieval-Augmented Generation (RAG) | Evidence-grounded AI responses |
+| Microsoft Word (.docx) | Professional report generation |
+| Microsoft Excel (.xlsx) | Structured research export |
+| VS Code | Development environment |
+| Git & GitHub | Version control and collaboration |
