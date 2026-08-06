@@ -21,3 +21,28 @@ The application searches **PubMed**, builds a local semantic knowledge base usin
 - 📄 Professional Microsoft Word report generation
 - 📊 Excel research report export
 - 🖥️ Interactive menu-driven application
+---
+
+# 📸 Application Preview
+
+## Main Menu
+
+![Main Menu](docs/screenshots/menu.png)
+
+---
+
+## Retrieval-Augmented Generation (RAG)
+
+![RAG Assistant](docs/screenshots/rag_answer.png)
+
+---
+
+## AI Paper Comparison
+
+![Paper Comparison](docs/screenshots/paper_comparison.png)
+
+---
+
+## Professional Word Report
+
+![Word Report](docs/screenshots/word_report.png)
