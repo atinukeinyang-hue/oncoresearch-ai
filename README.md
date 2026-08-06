@@ -110,3 +110,38 @@ Build the local vector database before running the application:
 ```bash
 python rag/build_vector_db.py
 ```
+
+---
+
+# ▶️ Usage Guide
+
+After installation, launch the application:
+
+```bash
+python app.py
+```
+
+You will be presented with an interactive menu:
+
+```
+1. Search and analyse PubMed papers
+2. Compare two research topics
+3. Ask the RAG Research Assistant
+4. Exit
+```
+
+### Search and Analyse PubMed Papers
+
+Search the latest scientific literature directly from PubMed and generate AI-assisted summaries.
+
+### Compare Research Topics
+
+Compare two research topics or publications and identify key similarities and differences.
+
+### Ask the RAG Research Assistant
+
+Ask evidence-based research questions against your local ChromaDB knowledge base.
+
+### Export Professional Reports
+
+Generate professionally formatted Microsoft Word research reports and Excel exports for documentation and further analysis.
