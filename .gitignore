@@ -33,6 +33,7 @@ ENV/
 
 .DS_Store
 Thumbs.db
+Desktop.ini
 
 # ==========================================
 # Python Build Files
