@@ -46,3 +46,13 @@ The application searches **PubMed**, builds a local semantic knowledge base usin
 ## Professional Word Report
 
 ![Word Report](docs/screenshots/word_report.png)
+
+---
+
+# 🏗️ System Architecture
+
+The diagram below illustrates the high-level architecture of **OncoResearch AI** and how the different components work together to generate evidence-based research answers.
+
+<p align="center">
+  <img src="docs/assets/architecture.png" alt="OncoResearch AI System Architecture" width="1000">
+</p>
