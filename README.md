@@ -145,3 +145,25 @@ Ask evidence-based research questions against your local ChromaDB knowledge base
 ### Export Professional Reports
 
 Generate professionally formatted Microsoft Word research reports and Excel exports for documentation and further analysis.
+
+---
+
+# 📁 Project Structure
+
+```text
+oncoresearch-ai/
+│
+├── agents/              # AI agents for research and comparison
+├── docs/                # Documentation, architecture, screenshots
+├── outputs/             # Generated Word reports
+├── prompts/             # Prompt templates
+├── rag/                 # Retrieval-Augmented Generation pipeline
+├── tools/               # PubMed, Claude, and export utilities
+├── utils/               # Shared helper functions
+├── vector_db/           # Local ChromaDB vector database
+│
+├── app.py               # Main application entry point
+├── requirements.txt     # Python dependencies
+├── README.md            # Project documentation
+└── .env                 # Environment variables (not committed)
+```
