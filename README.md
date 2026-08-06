@@ -56,3 +56,57 @@ The diagram below illustrates the high-level architecture of **OncoResearch AI**
 <p align="center">
   <img src="docs/assets/architecture.png" alt="OncoResearch AI System Architecture" width="1000">
 </p>
+
+---
+
+# ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/atinukeinyang-hue/oncoresearch-ai.git
+```
+
+Navigate into the project:
+
+```bash
+cd oncoresearch-ai
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate the virtual environment.
+
+Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+Install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Create a `.env` file and add your API keys:
+
+```text
+ANTHROPIC_API_KEY=your_key_here
+```
+
+Build the local vector database before running the application:
+
+```bash
+python rag/build_vector_db.py
+```
