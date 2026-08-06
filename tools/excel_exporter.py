@@ -26,18 +26,22 @@ def export_to_excel(papers, filename="research_results.xlsx"):
     # Data rows
     for paper in papers:
 
-        summary = paper["summary"]
+        summary = paper.get("summary", {})
+
+        # If summary is not a dictionary, convert it to an empty one
+        if not isinstance(summary, dict):
+            summary = {}
 
         sheet.append([
-            paper["title"],
-            paper["authors"],
-            paper["journal"],
-            paper["year"],
-            summary,
-            "",   # Key Findings (later)
-            "",   # Clinical Significance (later)
-            "",   # Limitations (later)
-            ""    # Keywords (later)
+            paper.get("title", ""),
+            paper.get("authors", ""),
+            paper.get("journal", ""),
+            paper.get("year", ""),
+            summary.get("study_design", ""),
+            summary.get("key_findings", ""),
+            summary.get("clinical_significance", ""),
+            summary.get("limitations", ""),
+            ", ".join(summary.get("keywords", []))
         ])
 
     workbook.save(filename)
