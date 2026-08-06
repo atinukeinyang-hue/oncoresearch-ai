@@ -183,3 +183,41 @@ oncoresearch-ai/
 | Microsoft Excel (.xlsx) | Structured research export |
 | VS Code | Development environment |
 | Git & GitHub | Version control and collaboration |
+
+---
+
+# 🗺️ Roadmap
+
+## ✅ Version 1.0
+
+- Live PubMed integration
+- AI-powered paper summarization
+- AI paper comparison
+- Retrieval-Augmented Generation (RAG)
+- ChromaDB semantic search
+- Evidence-grounded AI responses
+- Professional Microsoft Word report generation
+- Excel export
+- Interactive command-line application
+- Professional documentation
+
+---
+
+## 🚀 Planned for Version 2.0
+
+- PDF research paper upload
+- Multi-LLM support (Claude, GPT, Gemini)
+- Clinical guideline assistant
+- Citation manager
+- Web interface
+- User authentication
+- Research history
+- Cloud deployment
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+You are free to use, modify, and distribute this software in accordance with the terms of the MIT License.
