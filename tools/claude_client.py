@@ -27,25 +27,42 @@ You will receive a research paper containing:
 
 Extract the information below.
 
-If information is missing, return "Not specified".
+Keep every field concise and focused.
 
-Return ONLY ONE valid JSON object.
+Rules:
 
-Do NOT explain anything.
+- title: Extract the paper title exactly as written.
+- journal: Extract the journal name.
+- year: Extract the publication year.
+- study_design: Maximum 1 short sentence.
+- key_findings: Maximum 3 concise sentences summarizing the most important results.
+- clinical_significance: Maximum 2 concise sentences explaining why the findings matter clinically.
+- limitations: Maximum 2 concise sentences describing the main study limitations.
+- keywords: Maximum 5 short keywords.
 
-Do NOT use markdown.
+If any information is missing, return "Not specified" for that field.
+
+Return ONLY one valid JSON object.
+
+Do not include any introductory text.
+Do not include explanations.
+Do not include markdown.
+Do not include code fences.
+Do not include notes before or after the JSON.
+
+Your entire response must be valid JSON.
 
 Use exactly this format:
 
 {{
-  "title":"",
-  "journal":"",
-  "year":"",
-  "study_design":"",
-  "key_findings":"",
-  "clinical_significance":"",
-  "limitations":"",
-  "keywords":[]
+  "title": "",
+  "journal": "",
+  "year": "",
+  "study_design": "",
+  "key_findings": "",
+  "clinical_significance": "",
+  "limitations": "",
+  "keywords": []
 }}
 
 {text}
@@ -53,7 +70,7 @@ Use exactly this format:
 
     response = client.messages.create(
         model="claude-sonnet-5",
-        max_tokens=700,
+        max_tokens=2000,
         thinking={"type": "disabled"},
         messages=[
             {
