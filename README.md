@@ -61,35 +61,11 @@ The project demonstrates how modern AI engineering techniques can support scient
 The diagram below illustrates the high-level architecture of **OncoResearch AI** and how the different components work together to generate evidence-based research answers.
 
 <p align="center">
-  <img src="docs/assets/architecture.png" alt="OncoResearch AI System Architecture" width="1000">
+  <img src="docs/architecture.png"
+       alt="OncoResearch AI System Architecture">
 </p>
 
----
-## Architecture Workflow
 
-```text
-                   User
-                     │
-                     ▼
-             Interactive Menu
-                     │
-        ┌────────────┴────────────┐
-        ▼                         ▼
- PubMed Search               RAG Assistant
-        │                         │
-        ▼                         ▼
-   PubMed API               ChromaDB Search
-        │                         │
-        ▼                         ▼
- Claude Sonnet            Relevant Papers
-        │                         │
-        ▼                         ▼
- Structured Analysis     Evidence-Based Answer
-        │
-        ├───────────────┐
-        ▼               ▼
- Excel Export      Word Report
-```
 
 # ⚙️ Installation
 
@@ -312,8 +288,10 @@ Medical Physicist and AI Engineer with a focus on applying artificial intelligen
 
 This project forms part of a broader portfolio exploring AI-assisted healthcare applications, Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), and intelligent clinical decision-support systems.
 
-- GitHub: https://github.com/atinukeinyang-hue
-- LinkedIn: *(linkedin.com/in/atinukeinyang)*
+- GitHub: GitHub: [atinukeinyang-hue](https://github.com/atinukeinyang-hue)
+- LinkedIn: *(LinkedIn: https://www.linkedin.com/in/atinukeinyang/)*
+
+
 
 # 📄 License
 
