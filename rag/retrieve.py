@@ -1,4 +1,5 @@
 import chromadb
+from chromadb.errors import NotFoundError
 
 # ==========================================
 # Connect to the vector database
@@ -6,12 +7,27 @@ import chromadb
 
 client = chromadb.PersistentClient(path="vector_db")
 
-collection = client.get_collection(
-    name="pubmed_papers"
-)
+
+def get_collection():
+    try:
+        return client.get_collection(name="pubmed_papers")
+    except NotFoundError as error:
+        raise RuntimeError(
+            "RAG knowledge base is not initialized. "
+            "Run 'python rag/build_vector_db.py' first."
+        ) from error
 
 
 def retrieve_papers(question, n_results=3):
+
+    collection = get_collection()
+
+    paper_count = collection.count()
+
+    if paper_count == 0:
+        return []
+
+    n_results = min(n_results, paper_count)
 
     results = collection.query(
         query_texts=[question],
