@@ -10,6 +10,8 @@ __pycache__/
 vector_db/
 
 # Generated research reports
+
+research_results.xlsx
 outputs/*.docx
 outputs/*.pdf
 outputs/*.xlsx
