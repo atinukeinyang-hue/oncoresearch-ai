@@ -1,4 +1,4 @@
-## 🩺 OncoResearch AI
+# 🩺 OncoResearch AI
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Claude](https://img.shields.io/badge/Claude-Sonnet-D97706?style=for-the-badge)
@@ -6,17 +6,19 @@
 ![RAG](https://img.shields.io/badge/RAG-Evidence%20Grounded-DC2626?style=for-the-badge)
 ![PubMed](https://img.shields.io/badge/PubMed-NCBI-2563EB?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-059669?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-v1.0-7C3AED?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-v1.0.1-7C3AED?style=for-the-badge)
 
-> 🚧 **Project Status:** Active Development (Version 1.0)
+> 🚧 **Project Status:** Active Development (Version 1.0.1)
 >
 > This project is actively maintained, with additional AI capabilities planned for future releases.
 
 ## *An Evidence-Based AI Research Assistant for Radiotherapy and Medical Physics*
 
-OncoResearch AI is an AI-powered **Retrieval-Augmented Generation (RAG)** research assistant designed to help clinicians, medical physicists, researchers, and students rapidly explore the scientific literature.
+**OncoResearch AI** is an AI-powered **Retrieval-Augmented Generation (RAG)** research assistant designed to help clinicians, medical physicists, researchers, and students explore scientific literature more efficiently.
 
-The application searches **PubMed**, builds a local semantic knowledge base using **ChromaDB**, retrieves relevant research papers, generates evidence-based answers using **Claude Sonnet**, compares scientific publications, and exports professionally formatted research reports.
+The application searches **PubMed**, builds a local semantic knowledge base using **ChromaDB**, retrieves relevant research papers, generates evidence-grounded answers using **Claude Sonnet**, compares research topics, and exports professionally formatted research reports.
+
+> **Important:** OncoResearch AI is a research and educational software project. It is not clinically validated and is not intended for patient-specific clinical decision-making.
 
 ---
 
@@ -75,7 +77,9 @@ Open `.env` and add your Anthropic API key:
 ANTHROPIC_API_KEY=your_anthropic_api_key_here
 ```
 
-Build the local RAG knowledge base:
+> Never commit your real `.env` file or API key to GitHub.
+
+Before using the **RAG Research Assistant**, build the local knowledge base:
 
 ```bash
 python rag/build_vector_db.py
@@ -99,36 +103,37 @@ python app.py
 - [Usage Guide](#️-usage-guide)
 - [Project Structure](#-project-structure)
 - [Technologies Used](#️-technologies-used)
-- [Key Skills Demonstrated](#key-skills-demonstrated)
+- [Key Skills Demonstrated](#-key-skills-demonstrated)
 - [Research and Education Applications](#-research-and-education-applications)
 - [Roadmap](#️-roadmap)
-- [Acknowledgements](#acknowledgements)
-- [About the Author](#about-the-author)
+- [Acknowledgements](#-acknowledgements)
+- [About the Author](#-about-the-author)
 - [License](#-license)
 
 ---
 
 ## Why OncoResearch AI?
 
-Medical literature is expanding rapidly, making it increasingly difficult for clinicians, medical physicists, researchers, and students to stay current with the latest evidence.
+Medical literature is expanding rapidly, making it increasingly difficult for clinicians, medical physicists, researchers, and students to stay current with relevant scientific evidence.
 
-OncoResearch AI was developed to streamline evidence-based literature exploration by combining live PubMed retrieval, AI-powered analysis, Retrieval-Augmented Generation (RAG), semantic search using ChromaDB, and automated report generation into a single research workflow.
+OncoResearch AI was developed to streamline evidence-based literature exploration by combining live PubMed retrieval, AI-assisted analysis, Retrieval-Augmented Generation (RAG), semantic retrieval using ChromaDB, and automated report generation within a single research workflow.
 
-The project demonstrates how modern AI engineering techniques can support scientific research while reducing the time required to identify, analyze, compare, and summarize relevant biomedical publications.
+The project demonstrates how modern AI engineering techniques can support scientific research while reducing repetitive work involved in identifying, analyzing, comparing, and summarizing biomedical publications.
 
 ---
 
 ## 🚀 Project Highlights
 
-- 🔍 Live PubMed research search
-- 🤖 AI-powered paper analysis with Claude Sonnet
-- ⚖️ AI comparison of research papers
-- 🧠 Retrieval-Augmented Generation (RAG)
-- 📚 ChromaDB semantic vector database
-- 📑 Evidence-grounded AI answers
-- 📄 Professional Microsoft Word report generation
-- 📊 Excel research report export
-- 🖥️ Interactive menu-driven application
+- 🔍 **Live PubMed research search**
+- 🤖 **AI-powered paper analysis with Claude Sonnet**
+- ⚖️ **Research-topic comparison**
+- 🧠 **Retrieval-Augmented Generation (RAG)**
+- 📚 **ChromaDB semantic retrieval**
+- 📑 **Evidence-grounded AI responses**
+- 📄 **Professional Microsoft Word report generation**
+- 📊 **Microsoft Excel research export**
+- 🖥️ **Interactive menu-driven application**
+- 🧩 **Modular Python architecture**
 
 ---
 
@@ -160,18 +165,24 @@ The project demonstrates how modern AI engineering techniques can support scient
 
 ## 🏗️ System Architecture
 
-The diagram below illustrates the high-level architecture of **OncoResearch AI** and how the different components work together to generate evidence-based research answers.
+The diagram below illustrates the high-level architecture of **OncoResearch AI** and how the major components work together to support evidence-based research workflows.
 
 <p align="center">
-  <img src="docs/architecture.png"
-       alt="OncoResearch AI System Architecture">
+  <img src="docs/architecture.png" alt="OncoResearch AI System Architecture">
 </p>
 
 ---
 
 ## ⚙️ Installation
 
-Clone the repository:
+### Requirements
+
+- Python 3.11 recommended
+- Git
+- Internet access for PubMed and external API requests
+- Anthropic API key for Claude-powered features
+
+### Clone the repository
 
 ```bash
 git clone https://github.com/atinukeinyang-hue/oncoresearch-ai.git
@@ -183,13 +194,13 @@ Navigate into the project:
 cd oncoresearch-ai
 ```
 
-Create a virtual environment:
+### Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-Activate the virtual environment.
+### Activate the virtual environment
 
 **Windows PowerShell:**
 
@@ -203,13 +214,15 @@ Activate the virtual environment.
 source .venv/bin/activate
 ```
 
-Install the dependencies:
+### Install the dependencies
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-Create your local `.env` file from the provided template.
+### Configure the environment file
+
+Create your local `.env` file from the provided `.env.example` template.
 
 **Windows PowerShell:**
 
@@ -229,15 +242,31 @@ Open `.env` and add your Anthropic API key:
 ANTHROPIC_API_KEY=your_anthropic_api_key_here
 ```
 
-> Keep your real `.env` file private and never commit your API key to GitHub.
+> Keep your real `.env` file private. It is excluded from Git tracking and should never be committed.
 
-Before using the **RAG Research Assistant**, build the local ChromaDB knowledge base:
+### Initialize the RAG knowledge base
+
+Before using the **RAG Research Assistant**, run:
 
 ```bash
 python rag/build_vector_db.py
 ```
 
-Launch the application:
+Enter a PubMed research topic when prompted.
+
+The builder retrieves PubMed literature and creates or loads the local ChromaDB collection:
+
+```text
+pubmed_papers
+```
+
+The persistent database is stored locally in:
+
+```text
+vector_db/
+```
+
+### Launch the application
 
 ```bash
 python app.py
@@ -253,58 +282,100 @@ After installation, launch the application:
 python app.py
 ```
 
-You will be presented with an interactive menu:
+The Version 1.0 application menu provides four options:
 
 ```text
+=======================================================
+RADIOTHERAPY RESEARCH ASSISTANT v1.0
+=======================================================
+
 1. Search and analyse PubMed papers
 2. Compare two research topics
 3. Ask the RAG Research Assistant
 4. Exit
+
+=======================================================
 ```
 
-### Search and Analyse PubMed Papers
+### 1. Search and Analyse PubMed Papers
 
-Search the latest scientific literature directly from PubMed and generate AI-assisted summaries.
+Choose:
 
-### Compare Research Topics
+```text
+1
+```
 
-Compare two research topics or publications and identify key similarities and differences.
+Enter a PubMed research topic.
 
-### Ask the RAG Research Assistant
+Example:
 
-Ask evidence-based research questions against your local ChromaDB knowledge base.
+```text
+HDR brachytherapy cervical cancer
+```
 
-If the knowledge base has not yet been initialized, run:
+The workflow retrieves relevant PubMed literature, performs AI-assisted analysis, and generates structured research outputs.
+
+### 2. Compare Two Research Topics
+
+Choose:
+
+```text
+2
+```
+
+Enter two research topics when prompted.
+
+The comparison workflow retrieves relevant literature and produces an AI-assisted comparison of the available research evidence.
+
+### 3. Ask the RAG Research Assistant
+
+Before using this feature, initialize the local knowledge base:
 
 ```bash
 python rag/build_vector_db.py
 ```
 
-### Export Professional Reports
+Then launch:
 
-Generate professionally formatted Microsoft Word research reports and Excel exports for documentation and further analysis.
+```bash
+python app.py
+```
 
----
-
-## Example Output
+Choose:
 
 ```text
-============================================================
-Research Topic:
-Cervical Cancer Brachytherapy
-
-Searching PubMed...
-
-Retrieved 5 papers
-
-Generating Claude analysis...
-
-✓ Excel report generated
-✓ Word report generated
-
-Completed successfully.
-============================================================
+3
 ```
+
+Enter a research question.
+
+Example:
+
+```text
+What are recent advances in HDR brachytherapy for cervical cancer?
+```
+
+The application searches the local ChromaDB knowledge base, retrieves relevant papers, and provides those papers as context to Claude for an evidence-grounded response.
+
+If the RAG knowledge base has not been initialized, the application provides setup guidance instead of terminating during startup.
+
+### 4. Exit
+
+Choose:
+
+```text
+4
+```
+
+to close the application.
+
+### Professional Research Outputs
+
+OncoResearch AI supports:
+
+- Microsoft Word research reports (`.docx`)
+- Microsoft Excel research exports (`.xlsx`)
+- Structured command-line output
 
 ---
 
@@ -328,54 +399,63 @@ oncoresearch-ai/
 └── sample_research_results.xlsx  # Example research export
 ```
 
-### Local runtime files
+### Local Runtime Files
 
-The following are created locally when the project is configured or used and are not part of the distributed source repository:
+The following are created locally when the project is configured or used and are **not part of the distributed source repository**:
 
 ```text
 .env
 vector_db/
+research_results.xlsx
 ```
 
 - `.env` stores the user's private Anthropic API key.
-- `vector_db/` stores the local persistent ChromaDB knowledge base.
+- `vector_db/` stores the persistent local ChromaDB knowledge base.
+- `research_results.xlsx` is a generated research-output file.
 
 ---
 
 ## 🛠️ Technologies Used
 
 | Technology | Purpose |
-|---|---|
-| **Python 3.11** | Core programming language |
-| **Claude Sonnet** | AI reasoning and scientific analysis |
-| **PubMed API** | Retrieval of biomedical research papers |
-| **ChromaDB** | Local vector database for semantic search |
-| **Retrieval-Augmented Generation (RAG)** | Evidence-grounded AI responses |
-| **Microsoft Word (.docx)** | Professional report generation |
-| **Microsoft Excel (.xlsx)** | Structured research export |
+| --- | --- |
+| **Python 3.11** | Core application development |
+| **NCBI PubMed API** | Biomedical literature retrieval |
+| **Anthropic Claude Sonnet** | AI-assisted scientific analysis and RAG generation |
+| **ChromaDB** | Persistent local vector storage and semantic retrieval |
+| **Retrieval-Augmented Generation (RAG)** | Evidence-grounded research question answering |
+| **Requests** | HTTP and API communication |
+| **XML / ElementTree** | Processing structured PubMed responses |
+| **OpenPyXL** | Microsoft Excel export |
+| **python-docx** | Microsoft Word report generation |
+| **Git** | Version control |
+| **GitHub** | Open-source repository and release management |
 | **VS Code** | Development environment |
-| **Git & GitHub** | Version control and collaboration |
 
 ---
 
-## Key Skills Demonstrated
+## 🧠 Key Skills Demonstrated
 
 - Python application development
+- Modular software architecture
 - REST API integration
+- Biomedical literature retrieval
+- XML and structured-data processing
+- Environment-variable management
+- External LLM API integration
 - Prompt engineering
-- Large Language Model (LLM) integration
 - Retrieval-Augmented Generation (RAG)
-- ChromaDB vector databases
-- Semantic search
-- JSON processing
+- Vector databases
+- Semantic retrieval
+- Exception handling
+- Dependency management
+- Reproducible Python environments
 - Microsoft Word automation
 - Microsoft Excel automation
-- Dependency management
-- Environment-variable management
-- Exception handling
-- Reproducible Python environments
-- Git and GitHub
-- Modular software architecture
+- Git version control
+- GitHub repository management
+- Technical documentation
+- Clean-environment testing and debugging
 
 ---
 
@@ -389,47 +469,65 @@ vector_db/
 - AI-assisted research report generation
 - Scientific knowledge retrieval
 
-> **Note:** OncoResearch AI Version 1.0 is a research and educational tool. It is not clinically validated and is not intended for patient-specific clinical decision-making.
+> **Note:** OncoResearch AI is a research and educational tool. It is not clinically validated and is not intended for patient-specific clinical decision-making.
 
 ---
 
 ## 🗺️ Roadmap
 
-### ✅ Version 1.0
+### ✅ Version 1.0 — Core Feature Release
+
+Version 1.0 introduced:
 
 - Live PubMed integration
-- AI-powered paper summarization
-- AI paper comparison
+- AI-powered paper analysis
+- Research-topic comparison
 - Retrieval-Augmented Generation (RAG)
-- ChromaDB semantic search
+- ChromaDB semantic retrieval
 - Evidence-grounded AI responses
 - Professional Microsoft Word report generation
-- Excel export
+- Microsoft Excel export
 - Interactive command-line application
-- Professional documentation
+- Project documentation
 
----
+### 🛠️ Version 1.0.1 — Maintenance and Reproducibility Update
+
+Version 1.0.1 improves the reliability and reproducibility of the Version 1.0 release through:
+
+- Corrected dependency declarations
+- Removal of unused LangChain and LangGraph dependencies
+- Improved handling of an uninitialized RAG knowledge base
+- Delayed Claude API initialization until Claude-powered functionality is used
+- Improved environment configuration handling
+- Clean-environment dependency verification
+- Fresh-clone application testing
+- Improved README and setup documentation
+- Generated-output Git cleanup
 
 ### 🚀 Planned for Version 2.0
 
-- PDF research paper upload
+Potential future development includes:
+
+- PDF research-paper ingestion
 - Multi-LLM support
-- Clinical guideline assistant
-- Citation manager
-- Web interface
+- Clinical-guideline research assistant
+- Citation-management features
+- Web-based interface
 - User authentication
-- Research history
+- Research-history storage
+- API layer
+- Docker containerization
 - Cloud deployment
 
 Future capabilities will be added incrementally and documented when implemented.
 
 ---
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
-This project makes use of the following open-source tools and services:
+This project makes use of open-source libraries and external services including:
 
-- PubMed (NCBI)
+- NCBI PubMed
 - Anthropic Claude API
 - ChromaDB
 - OpenPyXL
@@ -438,7 +536,7 @@ This project makes use of the following open-source tools and services:
 
 ---
 
-## About the Author
+## 👩🏽‍💻 About the Author
 
 Developed by **Atinuke Inyang**.
 
@@ -458,3 +556,7 @@ This project is licensed under the **MIT License**.
 You are free to use, modify, and distribute this software in accordance with the terms of the MIT License.
 
 See the [LICENSE](LICENSE) file for details.
+
+---
+
+⭐ **If you find OncoResearch AI useful or interesting, consider starring the repository.**
