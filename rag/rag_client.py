@@ -5,33 +5,38 @@ from dotenv import dotenv_values
 
 
 # ==========================================
-# Read the API key directly from .env
+# Locate the project environment file
 # ==========================================
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 ENV_FILE = PROJECT_ROOT / ".env"
 
-config = dotenv_values(ENV_FILE)
-api_key = config.get("ANTHROPIC_API_KEY")
 
-if not api_key:
-    raise ValueError(
-        "ANTHROPIC_API_KEY was not found in the .env file. "
-        "Check that .env is beside app.py and contains:\n"
-        "ANTHROPIC_API_KEY=your_key_here"
-    )
+# ==========================================
+# Create Claude client only when needed
+# ==========================================
+
+def get_client():
+    config = dotenv_values(ENV_FILE)
+    api_key = config.get("ANTHROPIC_API_KEY")
+
+    if not api_key:
+        raise RuntimeError(
+            "ANTHROPIC_API_KEY is not configured. "
+            "Copy .env.example to .env and add your Anthropic API key "
+            "before using Claude-powered features."
+        )
+
+    return anthropic.Anthropic(api_key=api_key)
 
 
 # ==========================================
-# Create Claude client
+# Generate evidence-grounded RAG answer
 # ==========================================
-
-client = anthropic.Anthropic(
-    api_key=api_key
-)
-
 
 def generate_rag_answer(question, retrieved_papers):
+
+    client = get_client()
 
     context = ""
 
@@ -55,7 +60,8 @@ Year:
 Abstract:
 {paper['abstract']}
 
-----------------------------------------
+---
+
 """
 
     prompt = f"""
