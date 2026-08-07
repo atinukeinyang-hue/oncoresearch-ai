@@ -15,22 +15,68 @@ The application searches **PubMed**, builds a local semantic knowledge base usin
 
 ## ⚡ Quick Start
 
+Clone the repository:
+
 ```bash
 git clone https://github.com/atinukeinyang-hue/oncoresearch-ai.git
 cd oncoresearch-ai
+```
 
+Create a virtual environment:
+
+```bash
 python -m venv .venv
+```
 
-# Windows
-.venv\Scripts\activate
+Activate the virtual environment.
 
-# macOS/Linux
+**Windows PowerShell:**
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+**macOS/Linux:**
+
+```bash
 source .venv/bin/activate
+```
 
-pip install -r requirements.txt
+Install the dependencies:
 
+```bash
+python -m pip install -r requirements.txt
+```
+
+Create your local environment file.
+
+**Windows PowerShell:**
+
+```powershell
+Copy-Item .env.example .env
+```
+
+**macOS/Linux:**
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and add your Anthropic API key:
+
+```env
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+```
+
+Build the local RAG knowledge base:
+
+```bash
 python rag/build_vector_db.py
+```
 
+Launch OncoResearch AI:
+
+```bash
 python app.py
 ```
 ## 📚 Table of Contents
@@ -75,25 +121,25 @@ The project demonstrates how modern AI engineering techniques can support scient
 
 ## Main Menu
 
-![Main Menu](docs/screenshots/menu.png)
+![OncoResearch AI Main Menu](docs/screenshots/menu.png)
 
 ---
 
 ## Retrieval-Augmented Generation (RAG)
 
-![RAG Assistant](docs/screenshots/rag_answer.png)
+![OncoResearch AI RAG Answer](docs/screenshots/rag_answer.png)
 
 ---
 
 ## AI Paper Comparison
 
-![Paper Comparison](docs/screenshots/paper_comparison.png)
+![OncoResearch AI Paper Comparison](docs/screenshots/paper_comparison.png)
 
 ---
 
 ## Professional Word Report
 
-![Word Report](docs/screenshots/word_report.png)
+![OncoResearch AI Word Report](docs/screenshots/word_report.png)
 
 ---
 
@@ -101,10 +147,12 @@ The project demonstrates how modern AI engineering techniques can support scient
 
 The diagram below illustrates the high-level architecture of **OncoResearch AI** and how the different components work together to generate evidence-based research answers.
 
+
 <p align="center">
   <img src="docs/architecture.png"
        alt="OncoResearch AI System Architecture">
 </p>
+
 
 
 
@@ -130,13 +178,13 @@ python -m venv .venv
 
 Activate the virtual environment.
 
-Windows:
+**Windows PowerShell:**
 
-```bash
-.venv\Scripts\activate
+```powershell
+.\.venv\Scripts\Activate.ps1
 ```
 
-macOS/Linux:
+**macOS/Linux:**
 
 ```bash
 source .venv/bin/activate
@@ -145,19 +193,41 @@ source .venv/bin/activate
 Install the dependencies:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
-Create a `.env` file and add your API keys:
+Create your local `.env` file from the provided template.
+
+**Windows PowerShell:**
+
+```powershell
+Copy-Item .env.example .env
+```
+
+**macOS/Linux:**
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and add your Anthropic API key:
 
 ```text
-ANTHROPIC_API_KEY=your_key_here
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
 ```
 
-Build the local vector database before running the application:
+> Keep your real `.env` file private and never commit your API key to GitHub.
+
+Before using the **RAG Research Assistant**, build the local ChromaDB knowledge base:
 
 ```bash
 python rag/build_vector_db.py
+```
+
+Launch the application:
+
+```bash
+python app.py
 ```
 
 ---
@@ -222,23 +292,25 @@ Completed successfully.
 
 ```text
 oncoresearch-ai/
-│
-├── agents/              # AI agents for research and comparison
-├── docs/                # Documentation, architecture, screenshots
-├── outputs/             # Generated Word reports
-├── prompts/             # Prompt templates
-├── rag/                 # Retrieval-Augmented Generation pipeline
-├── tools/               # PubMed, Claude, and export utilities
-├── utils/               # Shared helper functions
-├── vector_db/           # Local ChromaDB vector database
-│
-├── app.py               # Main application entry point
-├── requirements.txt     # Python dependencies
-├── README.md            # Project documentation
-└── .env                 # Environment variables (not committed)
-```
+## 📁 Project Structure
 
----
+```text
+oncoresearch-ai/
+│
+├── agents/                       # Research and comparison agents
+├── docs/                         # Documentation, architecture, screenshots
+├── outputs/                      # Generated research outputs
+├── rag/                          # Retrieval-Augmented Generation pipeline
+├── tools/                        # PubMed, Claude, and export utilities
+│
+├── .env.example                  # Environment variable template
+├── .gitignore                    # Git ignore rules
+├── LICENSE                       # MIT License
+├── README.md                     # Project documentation
+├── app.py                        # Main application entry point
+├── requirements.txt              # Python dependencies
+└── sample_research_results.xlsx  # Example research export
+
 
 ## 🛠️ Technologies Used
 
@@ -270,15 +342,17 @@ oncoresearch-ai/
 - Git and GitHub
 - Modular software architecture
 
-## Potential Clinical Applications
+## 🔬 Research and Education Applications
 
 - Evidence-based literature review
 - Radiotherapy research
-- Medical physics education
-- Clinical guideline exploration
+- Medical physics research and education
+- Clinical guideline literature exploration
 - Research paper comparison
-- AI-assisted report generation
+- AI-assisted research report generation
 - Scientific knowledge retrieval
+
+> **Note:** OncoResearch AI Version 1.0 is a research and educational tool. It is not clinically validated and is not intended for patient-specific clinical decision-making.
 
 ## 🗺️ Roadmap
 
@@ -325,12 +399,12 @@ This project makes use of the following open-source tools and services:
 
 Developed by **Atinuke Inyang**.
 
-Medical Physicist and AI Engineer with a focus on applying artificial intelligence to radiotherapy, medical physics, and evidence-based clinical research.
+Medical Physicist exploring AI engineering for radiotherapy, medical physics research, medical AI, and evidence-based research automation.
 
-This project forms part of a broader portfolio exploring AI-assisted healthcare applications, Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), and intelligent clinical decision-support systems.
+This project forms part of a broader portfolio focused on combining medical physics domain knowledge with Python, APIs, Retrieval-Augmented Generation (RAG), vector databases, and modern AI-assisted research workflows.
 
-- GitHub: GitHub: [atinukeinyang-hue](https://github.com/atinukeinyang-hue)
-- LinkedIn: - LinkedIn: https://www.linkedin.com/in/atinukeinyang/
+- GitHub: [atinukeinyang-hue](https://github.com/atinukeinyang-hue)
+- LinkedIn: [Atinuke Inyang](https://www.linkedin.com/in/atinukeinyang/)
 
 
 
