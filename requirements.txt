@@ -33,3 +33,4 @@ anthropic==0.120.2
 chromadb==1.5.9
 openpyxl==3.1.5
 python-docx==1.2.0
+pytest==9.1.1

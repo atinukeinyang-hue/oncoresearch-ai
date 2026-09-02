@@ -4,137 +4,271 @@ import xml.etree.ElementTree as ET
 from tools.summarizer import summarize_paper
 
 
-def search_pubmed(query, use_claude=True):
+def get_element_text(element):
+    """
+    Extract all text from an XML element, including nested formatting tags.
+    """
+    if element is None:
+        return ""
+
+    return " ".join(
+        text.strip()
+        for text in element.itertext()
+        if text and text.strip()
+    )
+
+
+def search_pubmed(query, use_claude=True, max_results=10):
+    """
+    Search PubMed and return structured article records.
+    """
+
     print(f"\nSearching PubMed for: {query}\n")
 
-    search_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
+    search_url = (
+        "https://eutils.ncbi.nlm.nih.gov/"
+        "entrez/eutils/esearch.fcgi"
+    )
 
     search_params = {
         "db": "pubmed",
         "term": query,
         "retmode": "json",
-        "retmax": 5
+        "retmax": max_results,
+        "sort": "relevance",
     }
 
-    response = requests.get(search_url, params=search_params)
-    data = response.json()
+    try:
+        response = requests.get(
+            search_url,
+            params=search_params,
+            timeout=30,
+        )
+        response.raise_for_status()
+        data = response.json()
+    except requests.RequestException as error:
+        print(f"PubMed search failed: {error}")
+        return []
+    except ValueError as error:
+        print(f"PubMed returned invalid search data: {error}")
+        return []
 
-    pmids = data["esearchresult"]["idlist"]
+    pmids = data.get("esearchresult", {}).get("idlist", [])
 
-    print(pmids)
+    if not pmids:
+        print("No PubMed records were found.")
+        return []
 
-    ids = ",".join(pmids)
+    print(f"PMIDs retrieved: {pmids}")
 
-    fetch_url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
+    fetch_url = (
+        "https://eutils.ncbi.nlm.nih.gov/"
+        "entrez/eutils/efetch.fcgi"
+    )
 
     fetch_params = {
         "db": "pubmed",
-        "id": ids,
-        "retmode": "xml"
+        "id": ",".join(pmids),
+        "retmode": "xml",
     }
 
-    fetch_response = requests.get(fetch_url, params=fetch_params)
-
-    root = ET.fromstring(fetch_response.text)
-
-    print(root.tag)
+    try:
+        fetch_response = requests.get(
+            fetch_url,
+            params=fetch_params,
+            timeout=60,
+        )
+        fetch_response.raise_for_status()
+        root = ET.fromstring(fetch_response.content)
+    except requests.RequestException as error:
+        print(f"PubMed article download failed: {error}")
+        return []
+    except ET.ParseError as error:
+        print(f"PubMed XML could not be read: {error}")
+        return []
 
     papers = []
 
-    for article in root.findall(".//PubmedArticle"):
+    for article in root.findall("./PubmedArticle"):
 
-        title = article.findtext(".//ArticleTitle")
+        # PMID and source URL
+        pmid = article.findtext("./MedlineCitation/PMID") or ""
+        pubmed_url = (
+            f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
+            if pmid
+            else ""
+        )
 
-        if title is None:
+        # Title
+        title_element = article.find(
+            "./MedlineCitation/Article/ArticleTitle"
+        )
+        title = get_element_text(title_element)
+
+        if not title:
             title = "No title available"
 
-        author_list = article.findall(".//Author")
+        # Authors
+        author_elements = article.findall(
+            "./MedlineCitation/Article/AuthorList/Author"
+        )
 
         authors = []
 
-        for author in author_list:
+        for author in author_elements:
+            collective_name = author.findtext("CollectiveName")
+
+            if collective_name:
+                authors.append(collective_name)
+                continue
 
             lastname = author.findtext("LastName")
             initials = author.findtext("Initials")
 
             if lastname and initials:
                 authors.append(f"{lastname} {initials}")
+            elif lastname:
+                authors.append(lastname)
 
-        if authors:
-            authors = ", ".join(authors)
-        else:
-            authors = "Unknown"
+        authors_text = ", ".join(authors) if authors else "Unknown"
 
-        journal = article.findtext(".//Journal/Title")
+        # Journal
+        journal = article.findtext(
+            "./MedlineCitation/Article/Journal/Title"
+        )
 
-        if journal is None:
+        if not journal:
             journal = "Unknown"
 
-        year = article.findtext(".//PubDate/Year")
+        # Publication year
+        year = article.findtext(
+            "./MedlineCitation/Article/Journal/"
+            "JournalIssue/PubDate/Year"
+        )
 
-        if year is None:
-            year = "Unknown"
+        if not year:
+            year = article.findtext(
+                "./MedlineCitation/Article/ArticleDate/Year"
+            )
 
-        abstract_parts = article.findall(".//Abstract/AbstractText")
+        if not year:
+            medline_date = article.findtext(
+                "./MedlineCitation/Article/Journal/"
+                "JournalIssue/PubDate/MedlineDate"
+            )
 
-        if abstract_parts:
-            abstract = " ".join(
-                part.text for part in abstract_parts if part.text
+            if medline_date:
+                year = medline_date[:4]
+            else:
+                year = "Unknown"
+
+        # Abstract
+        abstract_elements = article.findall(
+            "./MedlineCitation/Article/Abstract/AbstractText"
+        )
+
+        abstract_sections = []
+
+        for abstract_element in abstract_elements:
+            section_text = get_element_text(abstract_element)
+            section_label = abstract_element.attrib.get("Label", "")
+
+            if not section_text:
+                continue
+
+            if section_label:
+                abstract_sections.append(
+                    f"{section_label}: {section_text}"
+                )
+            else:
+                abstract_sections.append(section_text)
+
+        abstract = " ".join(abstract_sections)
+
+        # DOI
+        doi = ""
+
+        for article_id in article.findall(
+            "./PubmedData/ArticleIdList/ArticleId"
+        ):
+            if article_id.attrib.get("IdType") == "doi":
+                doi = get_element_text(article_id)
+                break
+
+        # Avoid sending missing abstracts to the AI summarizer
+        if abstract:
+            summary = summarize_paper(
+                title,
+                abstract,
+                journal,
+                year,
+                use_claude=use_claude,
+            )
+
+            verification_status = (
+                "PubMed source retrieved — "
+                "AI summary requires human verification"
             )
         else:
-            abstract = "No abstract available."
+            abstract = "No abstract available in PubMed."
 
-        summary = summarize_paper(
-            title,
-            abstract,
-            journal,
-            year,
-            use_claude=use_claude
-        )
-
-        papers.append(
-            {
-                "title": title,
-                "authors": authors,
-                "journal": journal,
-                "year": year,
-                "abstract": abstract,
-                "summary": summary
+            summary = {
+                "study_design": "Not determined",
+                "key_findings": "Abstract unavailable",
+                "clinical_significance": "Manual review required",
+                "limitations": (
+                    "The PubMed record does not contain an abstract."
+                ),
+                "keywords": [],
             }
-        )
+
+            verification_status = (
+                "Manual full-text or abstract check required"
+            )
+
+        papers.append({
+            "pmid": pmid,
+            "doi": doi,
+            "pubmed_url": pubmed_url,
+            "title": title,
+            "authors": authors_text,
+            "journal": journal,
+            "year": year,
+            "abstract": abstract,
+            "summary": summary,
+            "verification_status": verification_status,
+        })
+
+    print(f"\nSuccessfully processed {len(papers)} PubMed records.")
 
     return papers
 
 
 def search_pubmed_dummy(query):
-    print(f"\nSearching PubMed for: {query}\n")
+    """
+    Return simulated records for offline testing.
+    """
+
+    title = f"Recent Advances in {query}"
+    abstract = "This is a simulated abstract for testing purposes."
 
     papers = [
         {
-            "title": f"Recent Advances in {query}",
-            "authors": "Johnson et al.",
+            "pmid": "TEST001",
+            "doi": "10.0000/example.001",
+            "pubmed_url": "",
+            "title": title,
+            "authors": "Johnson A, Williams B",
             "journal": "Journal of Radiotherapy",
             "year": "2024",
-            "abstract": "This is a simulated abstract.",
+            "abstract": abstract,
             "summary": summarize_paper(
-                f"Recent Advances in {query}",
-                "This is a simulated abstract.",
+                title,
+                abstract,
                 "Journal of Radiotherapy",
-                "2024"
-            )
-        },
-        {
-            "title": f"Artificial Intelligence for {query}",
-            "authors": "Williams et al.",
-            "journal": "Medical Physics",
-            "year": "2023",
-            "abstract": "This is another simulated abstract.",
-            "summary": summarize_paper(
-                f"Artificial Intelligence for {query}",
-                "This is another simulated abstract.",
-                "Medical Physics",
-                "2023"
-            )
+                "2024",
+            ),
+            "verification_status": "Simulated test record",
         }
     ]
 
@@ -142,5 +276,12 @@ def search_pubmed_dummy(query):
 
 
 def test_requests():
-    response = requests.get("https://www.google.com")
+    """
+    Test access to the PubMed service.
+    """
+
+    response = requests.get(
+        "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi",
+        timeout=30,
+    )
     print(response.status_code)
